@@ -1,12 +1,13 @@
-################################################
-# This is a simple application that will hopefully
-# grab pdf's from blackboard and store them on your machine
-################################################
+############################################################
+# This is a simple application that will hopefully         # 
+# grab pdf's from blackboard and store them on your machine#
+############################################################
 
 
 ################################################
-# Imports
+# Imports                                      #
 ################################################
+
 import os
 import urllib.request
 import http.cookiejar
@@ -19,8 +20,6 @@ import bs4
 from mimetypes import guess_extension
 from documents import pdfFile, bbFolder
 import re
-
-
 
 ################################################
 # Functions
@@ -49,16 +48,14 @@ def download_file(file_to_get):
         print(file_to_get.get_name() + " already exists in this directory... skipping it")
         return
     else:
-        try:
-            print('Accessing: ' + file_to_get.get_name())
-            source = urllib.request.urlopen(file_to_get.get_url())
-            app_name = file_to_get.get_name().encode('utf-8')
-            file = open(app_name, 'wb')
-            file.write(source.read())
-            file.close()
-            print('File saved: ' + file_to_get.get_name())
-        except:
-            print("Couldn't get the file... possible 404 error")
+        print('Accessing: ' + file_to_get.get_name())
+        source = urllib.request.urlopen(file_to_get.get_url())
+        app_name = file_to_get.get_name().encode('utf-8')
+        file = open(app_name, 'wb')
+        file.write(source.read())
+        file.close()
+        print('File saved: ' + file_to_get.get_name())
+
 
 # This will print the links which have "pdf" specified in the naming
 def get_links(url, folderName):
@@ -223,7 +220,7 @@ def download_module(moduleURL):
 
 
 ################################################
-# Main
+# Main                                         #
 ################################################
 
 
@@ -234,7 +231,7 @@ user_passwd_box = 'password'
 
 user = input('Enter in Aber ID: ')
 passwd = input('Enter password: ')
-home = expanduser('~/Documents')
+home = input("Please enter a file path to save the documents in. E.g. 'C:\Users\Matthew\Documents': ")
 login_bttn = 'login'
 
 
